@@ -228,9 +228,9 @@
                                 <div *ngIf="billingAddressCity.errors.required || billingAddressCity.errors.notOnlyWhitespace">
                                     City is required
                                 </div>
-                            </div>
-                            <div *ngIf="billingAddressCity.errors.minlength">
-                                City must be at least two characters long
+                                <div *ngIf="billingAddressCity.errors.minlength">
+                                    City must be at least two characters long
+                                </div>
                             </div>
                         </div>
                     </div>

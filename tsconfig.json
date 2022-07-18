@@ -9,7 +9,7 @@
     "forceConsistentCasingInFileNames": true,
     //"strict": true,
     "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
+    "noPropertyAccessFromIndexSignature": false, //Changed in Section 21/180
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,

@@ -1,6 +1,6 @@
 import { TemplateBindingParseResult } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { CartItem } from '../common/cart-item';
 
 @Injectable({
@@ -12,8 +12,8 @@ export class CartService {
 
   //Subject is a subclass of observable, we can use Subject to publish events in our code. 
   //The event will be sent to all of the subscribes
-  totalPrice: Subject<number> = new Subject<number>();
-  totalQuantity: Subject<number> = new Subject<number>();
+  totalPrice: Subject<number> = new BehaviorSubject<number>(0);
+  totalQuantity: Subject<number> = new BehaviorSubject<number>(0);
 
   constructor() { }
 

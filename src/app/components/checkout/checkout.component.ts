@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Country } from 'src/app/common/country';
 import { State } from 'src/app/common/state';
+import { CartService } from 'src/app/services/cart.service';
 import { ElectroiceFormService } from 'src/app/services/electroice-form.service';
 import { ElectroiceValidators } from 'src/app/validators/electroice-validators';
 
@@ -25,11 +26,14 @@ export class CheckoutComponent implements OnInit {
   billingAddressStates: State[] = [];
 
   constructor(private formBuilder: FormBuilder,
-              private electroiceFormService: ElectroiceFormService //Inject our form service
+              private electroiceFormService: ElectroiceFormService, //Inject our form service
+              private cartService: CartService // Inject cart service
               ) { }
 
   ngOnInit(): void {
 
+    this.reviewCartDetails();
+    
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
         firstName: new FormControl('', 
@@ -115,6 +119,18 @@ export class CheckoutComponent implements OnInit {
         this.countries = data;
       }
     )
+  }
+
+  reviewCartDetails() {
+    
+    // subscribe to cartservice.totalQuantity
+    this.cartService.totalQuantity.subscribe(
+      totalQuantity => this.totalQuantity = totalQuantity
+    );
+    //subscribe to cartservice.totalPrice
+    this.cartService.totalPrice.subscribe(
+      totalPrice => this.totalPrice = totalPrice
+    );
   }
 
   get firstName() { return this.checkoutFormGroup.get('customer.firstName'); }
